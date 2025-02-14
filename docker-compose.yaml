@@ -12,7 +12,7 @@ services:
     networks:
       - code-spaces
   docker_controller:
-    image: docker_controller
+    image: taasheeadmin/docker_controller
     container_name: docker_controller
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
