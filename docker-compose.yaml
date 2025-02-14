@@ -19,6 +19,7 @@ services:
       - ./nginx.conf:/code/nginx.conf
     environment:
       - MAPPING_PATH=/home/manikanta/code-spaces-mapping
+      - DOMAIN=http://localhost
     restart: always
     networks:
       - code-spaces
