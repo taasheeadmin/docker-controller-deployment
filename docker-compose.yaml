@@ -17,6 +17,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./nginx.conf:/code/nginx.conf
+      - ./docker-controller:/code
     environment:
       - MAPPING_PATH=/home/manikanta/code-spaces-mapping
       - DOMAIN=http://localhost
