@@ -2,14 +2,38 @@ version: '3'
 
 services:
   docker_controller:
-    image: taasheeadmin/docker_controller:swarm
+    image: taasheeadmin/django-code-server
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./nginx.conf:/nginx.conf
-      - /mnt/nfs/shared/code-spaces-mapping:/code-spaces-mapping
+      - /mnt/nfs_storage/code-spaces-mapping:/code-spaces-mapping
     environment:
-      - MAPPING_PATH=/mnt/nfs/shared/code-spaces-mapping
-      - DOMAIN=http://localhost
+      - MAPPING_PATH=/mnt/nfs_storage/code-spaces-mapping
+      - BASE_URL=http://52.5.72.35
+      - ACCEPTED_CONTAINERS_COUNT=10
+      - MIN_CAPACITY_REQUIRED=4
+      - ACCESS_KEY=
+      - SECRET_ACCESS_KEY=
+      - REGION=us-east-1
+      - POSTGRES_DB=code_server
+      - POSTGRES_USER=code_server
+      - POSTGRES_PASSWORD=code_server
+      - POSTGRES_HOST=db
+    networks:
+      - code-spaces
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: code_server
+      POSTGRES_USER: code_server
+      POSTGRES_PASSWORD: code_server
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
     networks:
       - code-spaces
     deploy:
