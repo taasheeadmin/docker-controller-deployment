@@ -30,7 +30,12 @@ This guide walks through the steps to set up a Docker Swarm environment on AWS w
   ```
 
 * Note down the output join command (you'll use this for worker nodes).
-
+* Execute below command before mounting:-
+  change user_name & group_name accordingly in the below command
+  ```bash
+  mkdir -p /mnt/nfs_storage/code-spaces-mapping
+  sudo chown {user_name}:{group_name} -R nfs_storage/
+  ```
 * Mount the EFS filesystem using command given in Attach session of EFS.
 
 ---
