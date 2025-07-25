@@ -118,6 +118,7 @@ This guide walks through the steps to set up a Docker Swarm environment on AWS w
   ```
 
 * Update the `.env` file with appropriate environment variables.
+```bash
 environment:
       - MAPPING_PATH=/mnt/nfs_storage/code-spaces-mapping
       - BASE_URL={master_public_ip}
@@ -130,7 +131,7 @@ environment:
       - POSTGRES_USER=code_server
       - POSTGRES_PASSWORD=code_server
       - POSTGRES_HOST=db
-
+```
 * Deploy the stack:
 
   ```bash
