@@ -113,11 +113,23 @@ This guide walks through the steps to set up a Docker Swarm environment on AWS w
 * On the **master node**, clone the repository:
 
   ```bash
-  git clone -b docker_swarm_with_db https://github.com/taasheeadmin/docker-controller-deployment.git
+  git clone -b master https://github.com/taasheeadmin/docker-controller-deployment.git
   cd docker-controller-deployment
   ```
 
 * Update the `.env` file with appropriate environment variables.
+environment:
+      - MAPPING_PATH=/mnt/nfs_storage/code-spaces-mapping
+      - BASE_URL={master_public_ip}
+      - ACCEPTED_CONTAINERS_COUNT={count of containers per VM}
+      - MIN_CAPACITY_REQUIRED={on demand containers available before creating another VM}
+      - ACCESS_KEY={AWS_ACCESS_KEY}
+      - SECRET_ACCESS_KEY={AWS_SECRET_KEY}
+      - REGION={REGION}
+      - POSTGRES_DB=code_server
+      - POSTGRES_USER=code_server
+      - POSTGRES_PASSWORD=code_server
+      - POSTGRES_HOST=db
 
 * Deploy the stack:
 
